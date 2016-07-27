@@ -1,7 +1,6 @@
 package com.ragnarok.rxcamera;
 
 import android.graphics.SurfaceTexture;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.TextureView;
 

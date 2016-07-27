@@ -36,8 +36,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'io.reactivex:rxandroid:1.1.0'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:1.9.5'
 }
 
 def siteUrl = 'https://github.com/ragnraok/RxCamera'
