@@ -1,0 +1,24 @@
+language: android
+
+android:
+    components:
+        - tools
+        - build-tools-23.0.3
+        - android-23
+        - extra-android-m2repository
+        - extra-google-m2repository
+
+before_install:
+    - echo "sdk.dir=$ANDROID_HOME" > local.properties
+
+script:
+    - ./gradlew clean test
+
+notifications:
+    email: false
+
+sudo: false
+
+cache:
+    directories:
+        - $HOME/.gradle
