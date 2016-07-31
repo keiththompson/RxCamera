@@ -34,7 +34,7 @@ public class RxCameraInternal implements SurfaceCallback.SurfaceListener, Camera
     // the camera config
     private RxCameraConfig cameraConfig;
 
-    private Context context;
+    private final Context context;
 
     private boolean isBindSurface = false;
     private boolean isOpenCamera = false;
@@ -68,8 +68,10 @@ public class RxCameraInternal implements SurfaceCallback.SurfaceListener, Camera
     private List<OnRxCameraPreviewFrameCallback> previewFrameCallbackList = new ArrayList<>();
     private List<OnRxCameraPreviewFrameCallback> oneshotPrevieFrameCallbackList = new ArrayList<>();
 
-    public void setConfig(RxCameraConfig config) {
-        this.cameraConfig = config;
+
+    RxCameraInternal(Context context, RxCameraConfig rxCameraConfig) {
+        this.context = context;
+        this.cameraConfig = rxCameraConfig;
     }
 
     public RxCameraConfig getConfig() {
@@ -83,11 +85,6 @@ public class RxCameraInternal implements SurfaceCallback.SurfaceListener, Camera
     public Point getFinalPreviewSize() {
         return finalPreviewSize;
     }
-
-    public void setContext(Context context) {
-        this.context = context;
-    }
-
 
     public boolean openCameraInternal() {
         reset();
