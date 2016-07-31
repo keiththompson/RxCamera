@@ -4,8 +4,10 @@ import android.content.Context;
 import android.graphics.Matrix;
 import android.graphics.Point;
 import android.hardware.Camera;
+import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.TextureView;
+import android.view.WindowManager;
 
 import com.ragnarok.rxcamera.action.RxCameraActionBuilder;
 import com.ragnarok.rxcamera.config.RxCameraConfig;
@@ -15,13 +17,7 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Func1;
 
-/**
- * Created by ragnarok on 15/10/25.
- * The RxCamera library interface
- */
 public class RxCamera  {
-
-    private static final String TAG = "RxCamera";
 
     private RxCameraInternal cameraInternal = new RxCameraInternal();
 
@@ -95,7 +91,21 @@ public class RxCamera  {
         this.cameraInternal.setConfig(config);
         this.cameraInternal.setContext(context);
         rotateMatrix = new Matrix();
-        rotateMatrix.postRotate(config.cameraOrientation, 0.5f, 0.5f);
+        rotateMatrix.postRotate(getMatrixRotation(context), 0.5f, 0.5f);
+    }
+
+    static int getMatrixRotation(Context context) {
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        final int displayRotation = windowManager.getDefaultDisplay().getRotation();
+
+        switch (displayRotation) {
+            case Surface.ROTATION_90: return 0;
+            case Surface.ROTATION_270: return 180;
+            case Surface.ROTATION_180: return 90;
+
+            default:
+            case Surface.ROTATION_0: return  270;
+        }
     }
 
     public Matrix getRotateMatrix() {
