@@ -395,6 +395,7 @@ public class RxCameraInternal implements SurfaceCallback.SurfaceListener, Camera
             return false;
         }
         try {
+            camera.stopPreview();
             camera.setPreviewCallback(null);
             camera.release();
             reset();
