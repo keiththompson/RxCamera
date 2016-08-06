@@ -3,11 +3,7 @@
 
 RxJava style camera API for android, it based on [android.hardware.camera](http://developer.android.com/intl/es/reference/android/hardware/Camera.html)
 
-Still in development
-
-----
-
-Add to your project dependencies:
+# Download
 
 ```groovy
 repositories {
